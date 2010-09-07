@@ -2,20 +2,20 @@
 set nocompatible
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
-set backup		" keep a backup file
-set history=50		" keep 50 lines of command line history
-set ruler		" show the cursor position all the time
-set showcmd		" display incomplete commands
-set incsearch		" do incremental searching
-set number " show line numbers
-set numberwidth=4 " line numbers 4 chars wide
-set shiftwidth=4 " indent 4 spaces automatically
-set tabstop=4 " tabs look 4 spaces wide
-set showmatch " how matching braces
-set showmode " show the mode i'm in
-syntax on " well duh, highlist that shit!
-set hlsearch " highlight search stuff too
-set t_Co=256 " convince terminals to look pretty
+set backup                     " keep a backup file
+set history=50                 " keep 50 lines of command line history
+set ruler                      " show the cursor position all the time
+set showcmd                    " display incomplete commands
+set incsearch                  " do incremental searching
+set number                     " show line numbers
+set numberwidth=4              " line numbers 4 chars wide
+set shiftwidth=4               " indent 4 spaces automatically
+set tabstop=4                  " tabs look 4 spaces wide
+set showmatch                  " how matching braces
+set showmode                   " show the mode i'm in
+syntax on                      " well duh, highlist that shit!
+set hlsearch                   " highlight search stuff too
+set t_Co=256                   " convince terminals to look pretty
 "set nowrap
 
 " i hate how vim, by default, saves the little *~ files everywhere. guys,
@@ -81,23 +81,23 @@ map <A-9> 9gt
 map <A-0> 10gt
 
 " map otherwise useless arrow keys to navigate between window splits
-map <up> :wincmd k<CR>
-map <down> :wincmd j<CR>
+map <up>    :wincmd k<CR>
+map <down>  :wincmd j<CR>
 map <right> :wincmd l<CR>
-map <left> :wincmd h<CR>
+map <left>  :wincmd h<CR>
 
 " alt-right and alt-left to cycle buffers in a split
 map <A-right> :bnext<CR>
-map <A-left> :bprevious<CR>
+map <A-left>  :bprevious<CR>
 " compensate for terminal
 map <right> :bnext<CR>
-map <left> :bprevious<CR>
+map <left>  :bprevious<CR>
 
 " alt-up and alt-down to cycle tabs in a split
 map <A-down> :tabnext<CR>
-map <A-up> :tabprevious<CR>
+map <A-up>   :tabprevious<CR>
 map <down> :tabnext<CR>
-map <up> :tabprevious<CR>
+map <up>   :tabprevious<CR>
 
 " who the fuck wants to type Ctrl-Shift-X Ctrl-Shift-O for omni?
 inoremap <C-O> <C-X><C-O>
@@ -181,24 +181,24 @@ au BufEnter *.py set autoindent
 
 " Plugin-specific
 " delimitMate
-let delimitMate_matchpairs = "(:),[:],{:}"
-"let b:delimitMate_expand_cr = "\<CR>\<CR>\<Up>\<Tab>"
-"let delimitMate_expand_space = "\<Space>\<Space>\<Left>"
-let b:delimitMate_expand_cr = 1
-let delimitMate_expand_space = 1
+let delimitMate_matchpairs         = "(:),[:],{:}"
+"let b:delimitMate_expand_cr       = "\<CR>\<CR>\<Up>\<Tab>"
+"let delimitMate_expand_space      = "\<Space>\<Space>\<Left>"
+let b:delimitMate_expand_cr        = 1
+let delimitMate_expand_space       = 1
 " gist.vim
-let g:gist_detect_filetype = 1
-let g:gist_clip_command = 'xclip -selection clipboard'
+let g:gist_detect_filetype         = 1
+let g:gist_clip_command            = 'xclip -selection clipboard'
 let g:gist_open_browser_after_post = 1
 " vimclojure
-let clj_paren_rainbow = 1
-let clj_highlight_builtin = 1
-let clj_highlight_contrib = 1
+let clj_paren_rainbow              = 1
+let clj_highlight_builtin          = 1
+let clj_highlight_contrib          = 1
 " pydiction
-let g:pydiction_location = '~/.vim/complete-dict'
+let g:pydiction_location           = '~/.vim/complete-dict'
 " snipmate
-au BufRead *.php set ft=php.html " dot-style syntax for multiple filetypes
-au BufEnter *.php set ft=php.html
+au BufRead *.php set ft            = php.html " dot-style syntax for multiple filetypes
+au BufEnter *.php set ft           = php.html
 
 
 " full list:
