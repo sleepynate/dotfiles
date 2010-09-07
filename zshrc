@@ -38,7 +38,7 @@ PATH=$PATH:$HOME/.bin
 # convenient aliases
 #
 # update all version-controlled stuff
-alias allcvs="for i in $HOME"'/workspace/[!D]* ; do
+alias allcvs="for i in $HOME"'/workspace/* ; do
     cd $i;
 	if [ -d .svn ] ;
 		then echo; echo updating $i;
