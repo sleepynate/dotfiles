@@ -48,7 +48,7 @@ alias allcvs="for i in $HOME"'/workspace/[!D]* ; do
 		git status && git pull;
 	elif [ -d .bzr ] ; 
 		then echo; echo pulling $i;
-		git status && git pull;
+		bzr status --versioned && bzr pull;
 	elif [ -d _darcs ] ; 
 		then echo; echo pulling $i;
 		darcs what -ls && darcs pull;
