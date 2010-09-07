@@ -55,9 +55,11 @@ alias allcvs="for i in $HOME"'/workspace/[!D]* ; do
 	fi
 done
 cd '
+# force tmux to always attach the same session and run in 256 color
 alias tmux='tmux -2 attach'
 alias ls='ls -F --color=auto'
 
+#java's dependence on path environment variables drives me nuts
 export CLASSPATH=/opt/clojure:/opt/clojure-contrib:/usr/share/java/
 export CLOJURE_EXT=/opt/clojure:/opt/clojure-contrib:/usr/share/java/
 PATH=$PATH:/opt/clojure-contrib/launchers/bash
