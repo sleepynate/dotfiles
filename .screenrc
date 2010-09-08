@@ -1,0 +1,32 @@
+#
+# for use on boxes where tmux isn't available...
+#
+startup_message off
+vbell off
+autodetach on
+altscreen on
+shelltitle "$ |bash"
+defscrollback 10000
+defutf8 on
+term screen-256color
+nonblock on
+select 1
+
+attrcolor b ".I"                                                                      
+# tell screen how to set colors. AB = background, AF=foreground                       
+termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'                              
+# # erase background with current bg color                                            
+defbce "on"     
+
+hardstatus alwayslastline
+hardstatus string '%{= kw}[ %{= kb}%H%{= kw} ][%= %{= kw}%?%-Lw%?%{= kW}%n*%f %t%?%?%{= kw}%?%+Lw%?%?%= ][%{r} %d/%m/%y %C %A %{w}]%{w}'
+#caption always "%{= kw}%-w%{= wk}%n %t%{-}%+w %-="
+
+bind 'q' quit
+
+# syntax: screen -t label order command
+screen -t vim 0 vim
+screen -t php 1 php -a
+screen -t python 2 python -i
+screen -t clojure 3 clj
+screen -t bash 4
