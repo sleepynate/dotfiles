@@ -1,0 +1,16 @@
+#!/bin/sh
+#
+# create links to dotfiles.
+#
+# creating links to dotfiles assures any pull updates all environs.
+# be advised, that because these are hardlinked, files will be continually
+# updated, but this only works if the dotfiles repo is checked out to the
+# volume as the user's home directory.
+
+CLONEDIR=$HOME"/workspace/dotfiles/"
+
+echo cd $CLONEDIR
+echo ln $CLONEDIR.screenrc $HOME/.screenrc
+echo ln $CLONEDIR.tmux.conf $HOME/.tmux.conf
+echo ln $CLONEDIR.vimrc $HOME/.vimrc
+echo ln $CLONEDIR.zshrc $HOME/.zshrc
