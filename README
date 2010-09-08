@@ -1,1 +1,10 @@
 Personal config files that I like to take everywhere.
+
+.zshrc - fix my laptop's pg-up/pg-dn/etc keys, set prompt, and use awesome aliases of awesome.
+.vimrc - lots of custom key mappings, especially to improve buffer/tab management without the need for a plugin.
+.tmux.conf - simple tabs at bottom, and start repl's for development environment
+.screenrc - fancy-schmancy bottom toolbar with time, hostname etc. i tend to use this on servers, as screen is already there.
+
+I've also got an INSTALL script that does my linking, so all I have to do on any new box is git clone, then run the INSTALL, and all my settings are there and happy forever.
+
+Please, take whatever you can from them (unless you find some errant RSA key or password!)
