@@ -56,7 +56,8 @@ set guioptions=aegt
 nmap <C-F11> :if &guioptions=~'m'\|set guioptions-=m\|else\|set guioptions+=m \|endif<CR>
 
 " even though i'm an xmonad guy, sometimes i use a mouse
-set mouse=a
+" set mouse=a
+set mouse=
 
 " default fold method is marker
 set foldmethod=marker
@@ -194,11 +195,13 @@ let g:gist_open_browser_after_post = 1
 let clj_paren_rainbow              = 1
 let clj_highlight_builtin          = 1
 let clj_highlight_contrib          = 1
+let clj_want_gorilla               = 1
+let vimclojure#NailgunClient = "/usr/bin/ng"
 " pydiction
 let g:pydiction_location           = '~/.vim/complete-dict'
 " snipmate
-au BufRead *.php set ft            = php.html " dot-style syntax for multiple filetypes
-au BufEnter *.php set ft           = php.html
+au BufRead *.php set ft=php.html " dot-style syntax for multiple filetypes
+au BufEnter *.php set ft=php.html
 
 
 " full list:
