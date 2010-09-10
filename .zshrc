@@ -35,26 +35,38 @@ PS1="%F{green}%m%F{white}:%F{yellow}%~%F{white}%% "
 # add a personal directory for utilities
 PATH=$PATH:$HOME/.bin
 
-# convenient aliases
+# convenient aliases and functions
 #
 # update all version-controlled stuff
-alias allcvs="for i in $HOME"'/workspace/* ; do
-    cd $i;
-	if [ -d .svn ] ;
-		then echo; echo updating $i;
-		svn st && svn up;
-	elif [ -d .git ] ; 
-		then echo; echo pulling $i;
-		git status && git pull;
-	elif [ -d .bzr ] ; 
-		then echo; echo pulling $i;
-		bzr status --versioned && bzr pull;
-	elif [ -d _darcs ] ; 
-		then echo; echo pulling $i;
-		darcs what -ls && darcs pull;
+allcvs ()  {
+	for i in $HOME/workspace/* ; do
+		cd $i;
+		if [ -d .svn ] ;
+			then echo; echo updating $i;
+			svn st && svn up;
+		elif [ -d .git ] ; 
+			then echo; echo pulling $i;
+			git status && git pull;
+		elif [ -d .bzr ] ; 
+			then echo; echo pulling $i;
+			bzr status --versioned && bzr pull;
+		elif [ -d _darcs ] ; 
+			then echo; echo pulling $i;
+			darcs what -ls && darcs pull;
+		fi
+	done
+	cd
+}
+
+ssh-tarcp () {
+	if [ $# -ne 2 ]
+	then
+		print "Usage: $0 [files-to-move] [user@remotehost]"
+	else
+	    tar zcf - $1 | ssh $2 'tar zxf -'
 	fi
-done
-cd '
+}
+
 # force tmux to always attach the same session and run in 256 color
 alias tmux='tmux -2 attach'
 alias ls='ls -F --color=auto'
