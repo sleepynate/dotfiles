@@ -19,7 +19,7 @@ set t_Co=256                   " convince terminals to look pretty
 "set nowrap
 
 " i hate how vim, by default, saves the little *~ files everywhere. guys,
-" confine that shit to a tmp directory so i don't constantly have to 
+" confine that shit to a tmp directory so i don't constantly have to
 " find -name '*~' -delete
 set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
@@ -172,7 +172,7 @@ au BufRead *.php silent loadview
 " auto-lint php files every time we save
 au BufWritePost *.php !php -l %
 
-" manage the way we deal with spaces in python files 
+" manage the way we deal with spaces in python files
 au BufEnter *.py set tabstop=4
 au BufEnter *.py set shiftwidth=4
 au BufEnter *.py set smarttab
@@ -203,10 +203,11 @@ let g:pydiction_location           = '~/.vim/complete-dict'
 au BufRead *.php set ft=php.html " dot-style syntax for multiple filetypes
 au BufEnter *.php set ft=php.html
 
+let g:buftabs_only_basename=1
 
 " full list:
 "AlignMapsPlugin.vim  delimitMate.vim     phpdoc.vim    surround.vim  vcscommand.vim  vcssvk.vim
-"AlignPlugin.vim      gist.vim            qname.vim     tabbar.vim    vcscvs.vim      vcssvn.vim
-"cecutil.vim          matchit.vim         ragtag.vim    tslime.vim    vcsgit.vim      
+"AlignPlugin.vim      gist.vim            qname.vim     buftabs.vim    vcscvs.vim      vcssvn.vim
+"cecutil.vim          matchit.vim         ragtag.vim    tslime.vim    vcsgit.vim
 "command-t.vim        NERD_commenter.vim  snipMate.vim  vcsbzr.vim    vcshg.vim
 
