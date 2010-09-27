@@ -68,6 +68,8 @@ set foldmethod=marker
 
 " remove extraneous trailing whitespaces
 nmap <F2> :%s/\s\+$//<CR>
+" quote all map indexes that are left unquoted
+nmap <F3> :s%s#\[\([a-zA-Z0-9_]\+\)\]#['\1']#g<CR>
 
 " map Alt+1 through Alt+0 to tab 1, tab 2, tab 3, etc.
 map <A-1> 1gt
