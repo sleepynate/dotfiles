@@ -21,9 +21,30 @@ setopt autocd
 # fix home/end keys
 bindkey '\e[1~' beginning-of-line
 bindkey '\e[4~' end-of-line
-bindkey '\e[6~' down-line-or-search
-bindkey '\e[5~' up-line-or-search
-bindkey '\e[3~' delete-char
+bindkey "\e[5~" beginning-of-history
+bindkey "\e[6~" end-of-history
+bindkey "\e[3~" delete-char
+bindkey "\e[2~" quoted-insert
+bindkey "\e[5C" forward-word
+bindkey "\eOc" emacs-forward-word
+bindkey "\e[5D" backward-word
+bindkey "\eOd" emacs-backward-word
+bindkey "\e\e[C" forward-word
+bindkey "\e\e[D" backward-word
+# for rxvt
+bindkey "\e[8~" end-of-line
+bindkey "\e[7~" beginning-of-line
+# weirder terminals
+bindkey '^?' backward-delete-char
+bindkey '^[[1~' beginning-of-line
+bindkey '^[[5~' up-line-or-history
+bindkey '^[[3~' delete-char
+bindkey '^[[4~' end-of-line
+bindkey '^[[6~' down-line-or-history
+bindkey '^[[A' up-line-or-search
+bindkey '^[[D' backward-char
+bindkey '^[[B' down-line-or-search
+bindkey '^[[C' forward-char 
 
 #dude... vi mode.
 setopt VI
