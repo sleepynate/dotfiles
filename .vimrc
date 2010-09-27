@@ -44,11 +44,11 @@ endif " has("autocmd") }}}
 
 " set colorchemes and font
 if has("gui_running")
-	colorscheme ndark
+	colorscheme darkburn
 else
 	colorscheme tir_black
 endif
-set gfn=roxanne\ 9 " <-- awesome font by steve "pokey" schmitt
+set gfn=Pragmata\ 6 " <-- awesome font by steve "pokey" schmitt
 
 " shut off useless-ass menubar and buttons
 set guioptions=aegt
@@ -99,6 +99,12 @@ map <A-down> :tabnext<CR>
 map <A-up>   :tabprevious<CR>
 map <down> :tabnext<CR>
 map <up>   :tabprevious<CR>
+
+" jump through error list.
+map <C-right> :cn<CR>
+map <C-left>  :cp<CR>
+map <C-up> :copen<CR>
+map <C-down>  :cclose<CR>
 
 " who the fuck wants to type Ctrl-Shift-X Ctrl-Shift-O for omni?
 inoremap <C-O> <C-X><C-O>
@@ -170,7 +176,7 @@ au BufWrite *.php mkview
 au BufRead *.php silent loadview
 
 " auto-lint php files every time we save
-au BufWritePost *.php !php -l %
+"au BufWritePost *.php !php -l %
 
 " manage the way we deal with spaces in python files
 au BufEnter *.py set tabstop=4
@@ -196,18 +202,19 @@ let clj_paren_rainbow              = 1
 let clj_highlight_builtin          = 1
 let clj_highlight_contrib          = 1
 let clj_want_gorilla               = 1
-let vimclojure#NailgunClient = "/usr/bin/ng"
+let vimclojure#NailgunClient       = "/usr/bin/ng"
 " pydiction
 let g:pydiction_location           = '~/.vim/complete-dict'
 " snipmate
-au BufRead *.php set ft=php.html " dot-style syntax for multiple filetypes
+au BufRead *.php set ft=php.html   " dot-style syntax for multiple filetypes
 au BufEnter *.php set ft=php.html
 
 let g:buftabs_only_basename=1
 
+
 " full list:
 "AlignMapsPlugin.vim  delimitMate.vim     phpdoc.vim    surround.vim  vcscommand.vim  vcssvk.vim
-"AlignPlugin.vim      gist.vim            qname.vim     buftabs.vim    vcscvs.vim      vcssvn.vim
-"cecutil.vim          matchit.vim         ragtag.vim    tslime.vim    vcsgit.vim
+"AlignPlugin.vim      gist.vim            qname.vim     buftabs.vim   vcscvs.vim      vcssvn.vim
+"cecutil.vim          matchit.vim         ragtag.vim    tslime.vim    vcsgit.vim      
 "command-t.vim        NERD_commenter.vim  snipMate.vim  vcsbzr.vim    vcshg.vim
 
