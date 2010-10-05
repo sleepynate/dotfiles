@@ -50,7 +50,7 @@ bindkey '^[[C' forward-char
 setopt VI
 
 # color prompt
-PS1="%F{green}%m%F{white}:%F{yellow}%~%F{white}%% "
+PS1="%F{green}%m%F{none}:%F{yellow}%~%F{none}%% "
 #RPROMPT='[%T]'
 
 # add a personal directory for utilities

@@ -44,7 +44,7 @@ endif " has("autocmd") }}}
 
 " set colorchemes and font
 if has("gui_running")
-	colorscheme darkburn
+	colorscheme mayansmoke
 else
 	colorscheme tir_black
 endif
@@ -57,7 +57,7 @@ nmap <C-F11> :if &guioptions=~'m'\|set guioptions-=m\|else\|set guioptions+=m \|
 
 " even though i'm an xmonad guy, sometimes i use a mouse
 " set mouse=a
-set mouse=
+set mouse=a
 
 " default fold method is marker
 set foldmethod=marker
@@ -213,6 +213,9 @@ au BufEnter *.php set ft=php.html
 
 let g:buftabs_only_basename=1
 
+set cursorline
+let g:mayansmoke_search_visibility = 0 " highest visibility
+"hi MayanSmokeCursorLine     guifg=NONE   guibg=grey10  gui=NONE 
 
 " full list:
 "AlignMapsPlugin.vim  delimitMate.vim     phpdoc.vim    surround.vim  vcscommand.vim  vcssvk.vim
