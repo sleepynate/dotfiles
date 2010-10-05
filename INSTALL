@@ -7,10 +7,10 @@
 # updated, but this only works if the dotfiles repo is checked out to the
 # volume as the user's home directory.
 
-CLONEDIR=$HOME"/workspace/dotfiles/"
+CLONEDIR=$HOME"/git/dotfiles/"
 
-echo cd $CLONEDIR
-echo ln $CLONEDIR.screenrc $HOME/.screenrc
-echo ln $CLONEDIR.tmux.conf $HOME/.tmux.conf
-echo ln $CLONEDIR.vimrc $HOME/.vimrc
-echo ln $CLONEDIR.zshrc $HOME/.zshrc
+cd $CLONEDIR
+ln $CLONEDIR.screenrc $HOME/.screenrc
+ln $CLONEDIR.tmux.conf $HOME/.tmux.conf
+ln $CLONEDIR.vimrc $HOME/.vimrc
+ln $CLONEDIR.zshrc $HOME/.zshrc
