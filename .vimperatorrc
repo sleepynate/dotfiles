@@ -1,0 +1,61 @@
+"colorscheme clearlooks
+colorscheme zenburn
+" Window title
+set titlestring=Firefox
+" No toolbar and scrollbars by default
+set go-=brT
+" Show pattern matches as you type
+set incsearch
+" Hilight previous search pattern matches
+set hlsearch
+" Override ignorecase if pattern has uppercase chars
+set smartcase
+" Show the tab bar only if more then one tab is open
+set showtabline=0
+" Focus content after a page has loaded
+set focuscontent
+" Show destination links in 1=status line, 2=command line
+set showstatuslinks=2
+" Show completions and use AwesomeBar (+search plugins)
+set complete=sl
+set wildoptions=auto
+" Ex commands output in a new tab by default (prefs, addons...)
+set newtab=all
+
+" M-Up/Dn toggles the toolbar and scrollbars
+map <A-Down> :set go+=brT<CR>
+map <A-Up> :set go-=brT<CR>
+
+map ,t :exe ":tinyurl "+getBrowser().contentWindow.location.href<CR>
+
+set wildmode=list:longest,full
+set wildoptions=sort
+
+" let gmail / google reader / google docs work as normal.
+autocmd LocationChange .* :js modes.passAllKeys = /mail\.google\.com|docs\.google\.com|www\.google\.com\/reader\/view/.test(buffer.URL)
+
+" aaron griffin's rss icon hack
+" Add the RSS icon to the bottom status bar too
+javascript <<EOF
+(function(){
+ var panel = document.createElement("statusbarpanel");
+ panel.setAttribute("id", "urlbar-icons-clone");
+
+ var urlbar = document.getElementById("urlbar-icons");
+
+ var allicons = [];
+ for(var i=0; i<urlbar.childNodes.length; ++i)
+ allicons.push(urlbar.childNodes[i].id);
+
+ for(var i=0; i<allicons.length; ++i) {
+ var icon = document.getElementById(allicons[i]);
+
+ if(icon.id == "go-button") continue;
+
+ icon.setAttribute("style", "padding: 0; max-height: 16px;");
+ panel.appendChild(icon);
+ }
+
+ var statbar = document.getElementById("status-bar");
+ statbar.appendChild(panel);
+})();
