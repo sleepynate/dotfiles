@@ -1,5 +1,10 @@
 " we're using vim, not vi.
 set nocompatible
+
+" enable pathogen before anything else
+call pathogen#runtime_append_all_bundles()
+call pathogen#helptags()
+
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 set backup                     " keep a backup file
@@ -46,7 +51,7 @@ endif " has("autocmd") }}}
 if has("gui_running")
 	colorscheme mayansmoke
 else
-	colorscheme tir_black
+	colorscheme darkburn
 endif
 set gfn=Pragmata\ 6 " <-- awesome font by steve "pokey" schmitt
 
@@ -174,8 +179,8 @@ let php_sql_query=1
 let php_htmlInStrings=1
 
 " auto-save views on open/close
-au BufWrite *.php mkview
-au BufRead *.php silent loadview
+"au BufWrite *.php mkview
+"au BufRead *.php silent loadview
 
 " auto-lint php files every time we save
 "au BufWritePost *.php !php -l %
@@ -218,8 +223,9 @@ let g:mayansmoke_search_visibility = 0 " highest visibility
 "hi MayanSmokeCursorLine     guifg=NONE   guibg=grey10  gui=NONE 
 
 " full list:
-"AlignMapsPlugin.vim  delimitMate.vim     phpdoc.vim    surround.vim  vcscommand.vim  vcssvk.vim
-"AlignPlugin.vim      gist.vim            qname.vim     buftabs.vim   vcscvs.vim      vcssvn.vim
-"cecutil.vim          matchit.vim         ragtag.vim    tslime.vim    vcsgit.vim      
-"command-t.vim        NERD_commenter.vim  snipMate.vim  vcsbzr.vim    vcshg.vim
-
+"AlignMapsPlugin.vim   matchit.vim          surround.vim     ssvcscvs.vim
+"AlignPlugin.vim       NERD_commenter.vim   tslime.vim       vcshg.vim
+"cecutil.vim           phpdoc.vim           vcsgit.vim       vcssvn.vim     
+"command-t.vim         qname.vim            vcsbzr.vim       buftabs.vim
+"delimitMate.vim       ragtag.vim           vcscommand.vim   pyflakes.vim
+"gist.vim              snipMate.vim         vcssvk.vim

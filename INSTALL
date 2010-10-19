@@ -13,4 +13,5 @@ cd $CLONEDIR
 ln $CLONEDIR.screenrc $HOME/.screenrc
 ln $CLONEDIR.tmux.conf $HOME/.tmux.conf
 ln $CLONEDIR.vimrc $HOME/.vimrc
+ln $CLONEDIR.vimperatorrc $HOME/.vimperatorrc
 ln $CLONEDIR.zshrc $HOME/.zshrc
