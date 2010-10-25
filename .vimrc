@@ -2,8 +2,10 @@
 set nocompatible
 
 " enable pathogen before anything else
+filetype off
 call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
+filetype on
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
@@ -21,6 +23,7 @@ set showmode                   " show the mode i'm in
 syntax on                      " well duh, highlist that shit!
 set hlsearch                   " highlight search stuff too
 set t_Co=256                   " convince terminals to look pretty
+set hidden
 "set nowrap
 
 " i hate how vim, by default, saves the little *~ files everywhere. guys,
@@ -49,11 +52,11 @@ endif " has("autocmd") }}}
 
 " set colorchemes and font
 if has("gui_running")
-	colorscheme mayansmoke
+	colorscheme proton
 else
 	colorscheme darkburn
 endif
-set gfn=Pragmata\ 6 " <-- awesome font by steve "pokey" schmitt
+set gfn=Pragmata\ 8 " <-- awesome font by steve "pokey" schmitt
 
 " shut off useless-ass menubar and buttons
 set guioptions=aegt
@@ -61,7 +64,6 @@ set guioptions=aegt
 nmap <C-F11> :if &guioptions=~'m'\|set guioptions-=m\|else\|set guioptions+=m \|endif<CR>
 
 " even though i'm an xmonad guy, sometimes i use a mouse
-" set mouse=a
 set mouse=a
 
 " default fold method is marker
@@ -123,7 +125,7 @@ nnoremap ` '
 
 " when in insert mode, type a double-; or double-: will jump to the end before
 " inserting
-inoremap :: <Esc>A:
+au FileType py inoremap :: <Esc>A:
 inoremap ;; <Esc>A;
 
 " behold, the mighty leader key.
