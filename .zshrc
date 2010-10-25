@@ -92,6 +92,11 @@ ssh-tarcp () {
 alias tmux='tmux -2 attach'
 alias ls='ls -F --color=auto'
 
+# give in to the fact that i type faster than i think and i'm usually in vim
+alias :o=vim
+alias :e=vim
+alias :q=exit
+
 #java's dependence on path environment variables drives me nuts
 export CLASSPATH=/opt/clojure:/opt/clojure-contrib:/usr/share/java/
 export CLOJURE_EXT=/opt/clojure:/opt/clojure-contrib:/usr/share/java/
