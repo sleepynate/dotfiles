@@ -1,5 +1,5 @@
-"colorscheme clearlooks
-colorscheme zenburn
+colorscheme clearlooks
+"colorscheme zenburn
 " Window title
 set titlestring=Firefox
 " No toolbar and scrollbars by default

@@ -96,6 +96,7 @@ alias ls='ls -F --color=auto'
 alias :o=vim
 alias :e=vim
 alias :q=exit
+alias phppp='php_beautifier -l "ArrayNested phpBB()"'
 
 #java's dependence on path environment variables drives me nuts
 export CLASSPATH=/opt/clojure:/opt/clojure-contrib:/usr/share/java/

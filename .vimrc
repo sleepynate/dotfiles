@@ -63,11 +63,12 @@ set guioptions=aegt
 " but define a mapping to return them as needed
 nmap <C-F11> :if &guioptions=~'m'\|set guioptions-=m\|else\|set guioptions+=m \|endif<CR>
 
+map <F12> :TlistToggle<CR>
 " even though i'm an xmonad guy, sometimes i use a mouse
 set mouse=a
 
 " default fold method is marker
-set foldmethod=marker
+set foldmethod=syntax
 
 "
 " map awesome keys of awesome.
@@ -76,7 +77,7 @@ set foldmethod=marker
 " remove extraneous trailing whitespaces
 nmap <F2> :%s/\s\+$//<CR>
 " quote all map indexes that are left unquoted
-nmap <F3> :s%s#\[\([a-zA-Z0-9_]\+\)\]#['\1']#g<CR>
+nmap <F3> :%s#\[\([a-zA-Z0-9_]\+\)\]#['\1']#g<CR>
 
 " map Alt+1 through Alt+0 to tab 1, tab 2, tab 3, etc.
 map <A-1> 1gt
@@ -177,8 +178,8 @@ filetype plugin on
 
 au FileType php set omnifunc=phpcomplete#CompletePHP
 " syntax-highlight SQL in PHP strings, and HTML in PHP strings
-let php_sql_query=1
-let php_htmlInStrings=1
+"let php_sql_query=1
+"let php_htmlInStrings=1
 
 " auto-save views on open/close
 "au BufWrite *.php mkview
@@ -194,6 +195,12 @@ au BufEnter *.py set smarttab
 au BufEnter *.py set expandtab
 au BufEnter *.py set softtabstop=4
 au BufEnter *.py set autoindent
+autocmd FileType python set ft=python.django " For SnipMate
+autocmd FileType html set ft=htmldjango.html " For SnipMate
+autocmd FileType python set omnifunc=pythoncomplete#Complete
+autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 
 " Plugin-specific
 " delimitMate
