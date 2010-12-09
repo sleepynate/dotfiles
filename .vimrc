@@ -56,7 +56,7 @@ if has("gui_running")
 else
 	colorscheme darkburn
 endif
-set gfn=Pragmata\ 8 " <-- awesome font by steve "pokey" schmitt
+set gfn=roxanne\ 10 " <-- awesome font by steve "pokey" schmitt
 
 " shut off useless-ass menubar and buttons
 set guioptions=aegt
@@ -141,6 +141,9 @@ nmap <silent> <leader>s :set nolist!<CR>
 
 " document function
 nmap <silent> <leader>d :set paste<CR>:call PhpDoc()<CR>:set nopaste<CR>
+
+" beautify php
+nmap <silent> <Leader>pb :%!php_beautifier -l "ArrayNested Pear()" %<CR>
 
 " ,v to auto-open vimrc in a new tab
 nmap <leader>v :tabedit $MYVIMRC<CR>
@@ -228,13 +231,5 @@ au BufEnter *.php set ft=php.html
 let g:buftabs_only_basename=1
 
 set cursorline
-let g:mayansmoke_search_visibility = 0 " highest visibility
-"hi MayanSmokeCursorLine     guifg=NONE   guibg=grey10  gui=NONE 
 
-" full list:
-"AlignMapsPlugin.vim   matchit.vim          surround.vim     ssvcscvs.vim
-"AlignPlugin.vim       NERD_commenter.vim   tslime.vim       vcshg.vim
-"cecutil.vim           phpdoc.vim           vcsgit.vim       vcssvn.vim     
-"command-t.vim         qname.vim            vcsbzr.vim       buftabs.vim
-"delimitMate.vim       ragtag.vim           vcscommand.vim   pyflakes.vim
-"gist.vim              snipMate.vim         vcssvk.vim
+source ~/.vim/rtm_keys
