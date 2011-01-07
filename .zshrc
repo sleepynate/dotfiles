@@ -91,6 +91,7 @@ ssh-tarcp () {
 # force tmux to always attach the same session and run in 256 color
 alias tmux='tmux -2 attach'
 alias ls='ls -F --color=auto'
+alias ack='ack --color-filename=blue'
 
 # give in to the fact that i type faster than i think and i'm usually in vim
 alias :o=vim

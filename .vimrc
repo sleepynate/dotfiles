@@ -6,6 +6,7 @@ filetype off
 call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
 filetype on
+filetype plugin on
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
@@ -76,8 +77,14 @@ set foldmethod=syntax
 
 " remove extraneous trailing whitespaces
 nmap <F2> :%s/\s\+$//<CR>
+vnoremap <F2> :s/\s\+$//<CR>
 " quote all map indexes that are left unquoted
 nmap <F3> :%s#\[\([a-zA-Z0-9_]\+\)\]#['\1']#g<CR>
+vnoremap <F3> :s#\[\([a-zA-Z0-9_]\+\)\]#['\1']#g<CR>
+" beautify php
+nmap <silent> <Leader>bp :%!php_beautifier -l "ArrayNested Pear()" %<CR>
+let @b='vf]s}f$f$'
+
 
 " map Alt+1 through Alt+0 to tab 1, tab 2, tab 3, etc.
 map <A-1> 1gt
@@ -116,9 +123,9 @@ map <C-left>  :cp<CR>
 map <C-up> :copen<CR>
 map <C-down>  :cclose<CR>
 
-" who the fuck wants to type Ctrl-Shift-X Ctrl-Shift-O for omni?
-inoremap <C-O> <C-X><C-O>
-inoremap <C-O> <C-X><C-O>
+" who the fuck wants to type Ctrl-X Ctrl-O for omni?
+inoremap <C-space> <C-X><C-O>
+inoremap <C-space> <C-X><C-O>
 
 " swap ` (backtick) and ' (single quote)
 nnoremap ' `
@@ -142,15 +149,15 @@ nmap <silent> <leader>s :set nolist!<CR>
 " document function
 nmap <silent> <leader>d :set paste<CR>:call PhpDoc()<CR>:set nopaste<CR>
 
-" beautify php
-nmap <silent> <Leader>pb :%!php_beautifier -l "ArrayNested Pear()" %<CR>
-
 " ,v to auto-open vimrc in a new tab
 nmap <leader>v :tabedit $MYVIMRC<CR>
 " also, automagically source the vimrc file after saving it
 if has("autocmd")
   autocmd bufwritepost .vimrc source $MYVIMRC
 endif
+
+" fuck that buffer.
+nmap <silent> <Leader>k :bd<CR>
 
 " ,p "P"aste to gist
 nmap <leader>p :Gist<CR>
@@ -180,6 +187,11 @@ abbr myemail nathan (period) dotz (at) gmail (period) com
 filetype plugin on
 
 au FileType php set omnifunc=phpcomplete#CompletePHP
+au FileType python set omnifunc=pythoncomplete#Complete
+au FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+au FileType html set omnifunc=htmlcomplete#CompleteTags
+au FileType css set omnifunc=csscomplete#CompleteCSS
+
 " syntax-highlight SQL in PHP strings, and HTML in PHP strings
 "let php_sql_query=1
 "let php_htmlInStrings=1
@@ -228,8 +240,19 @@ let g:pydiction_location           = '~/.vim/complete-dict'
 au BufRead *.php set ft=php.html   " dot-style syntax for multiple filetypes
 au BufEnter *.php set ft=php.html
 
+" taglist
+let Tlist_Ctags_Cmd = '/usr/bin/ctags-exuberant'
+let Tlist_Process_File_Always = 1
+let Tlist_Show_Menu = 1
+let Tlist_Auto_Update = 1
+
 let g:buftabs_only_basename=1
 
 set cursorline
 
+let g:unite_yarm_server_url="http://redmine/"
+let g:unite_yarm_access_key='dbd167f9059116da96f0cc73a1219a1e33d2455d'
+
 source ~/.vim/rtm_keys
+source ~/.vim/autoload/phpcs.vim
+source ~/.vim/autoload/php-doc.vim
