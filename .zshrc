@@ -32,29 +32,29 @@ bindkey "\eOd" emacs-backward-word
 bindkey "\e\e[C" forward-word
 bindkey "\e\e[D" backward-word
 # for rxvt
-bindkey "\e[8~" end-of-line
-bindkey "\e[7~" beginning-of-line
-# weirder terminals
-bindkey '^?' backward-delete-char
-bindkey '^[[1~' beginning-of-line
-bindkey '^[[5~' up-line-or-history
-bindkey '^[[3~' delete-char
-bindkey '^[[4~' end-of-line
-bindkey '^[[6~' down-line-or-history
-bindkey '^[[A' up-line-or-search
-bindkey '^[[D' backward-char
-bindkey '^[[B' down-line-or-search
-bindkey '^[[C' forward-char 
+#bindkey "\e[8~" end-of-line
+#bindkey "\e[7~" beginning-of-line
+## weirder terminals
+#bindkey '^?' backward-delete-char
+#bindkey '^[[1~' beginning-of-line
+#bindkey '^[[5~' up-line-or-history
+#bindkey '^[[3~' delete-char
+#bindkey '^[[4~' end-of-line
+#bindkey '^[[6~' down-line-or-history
+#bindkey '^[[A' up-line-or-search
+#bindkey '^[[D' backward-char
+#bindkey '^[[B' down-line-or-search
+#bindkey '^[[C' forward-char 
 
 #dude... vi mode.
 setopt VI
 
 # color prompt
-PS1="%F{green}%m%F{none}:%F{yellow}%~%F{none}%% "
-#RPROMPT='[%T]'
+PS1="%F{green}%m%F{none}:%F{magenta}%~%F{none}%% "
+RPROMPT='[%T]'
 
 # add a personal directory for utilities
-PATH=$PATH:$HOME/.bin
+PATH=$PATH:$HOME/.bin:$HOME/.cabal/bin
 
 # convenient aliases and functions
 #
@@ -92,6 +92,7 @@ ssh-tarcp () {
 alias tmux='tmux -2 attach'
 alias ls='ls -F --color=auto'
 alias ack='ack --color-filename=blue'
+alias svndiffvim='svn diff --diff-cmd ~/.bin/svnvimdiff'
 
 # give in to the fact that i type faster than i think and i'm usually in vim
 alias :o=vim

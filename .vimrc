@@ -19,7 +19,7 @@ set number                     " show line numbers
 set numberwidth=4              " line numbers 4 chars wide
 set shiftwidth=4               " indent 4 spaces automatically
 set tabstop=4                  " tabs look 4 spaces wide
-set showmatch                  " how matching braces
+set showmatch                  " show matching braces
 set showmode                   " show the mode i'm in
 syntax on                      " well duh, highlist that shit!
 set hlsearch                   " highlight search stuff too
@@ -53,9 +53,11 @@ endif " has("autocmd") }}}
 
 " set colorchemes and font
 if has("gui_running")
-	colorscheme proton
+	set background=light
+	colorscheme solarized
 else
-	colorscheme darkburn
+	set background=light
+	colorscheme solarized
 endif
 set gfn=roxanne\ 10 " <-- awesome font by steve "pokey" schmitt
 
@@ -69,7 +71,7 @@ map <F12> :TlistToggle<CR>
 set mouse=a
 
 " default fold method is marker
-set foldmethod=syntax
+" set foldmethod=syntax
 
 "
 " map awesome keys of awesome.
@@ -192,6 +194,9 @@ au FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 au FileType html set omnifunc=htmlcomplete#CompleteTags
 au FileType css set omnifunc=csscomplete#CompleteCSS
 
+"au FileType python compiler pyunit
+"au FileType python setlocal makeprg=python\ ${HOME}/.bin/alltests.py
+
 " syntax-highlight SQL in PHP strings, and HTML in PHP strings
 "let php_sql_query=1
 "let php_htmlInStrings=1
@@ -210,6 +215,7 @@ au BufEnter *.py set smarttab
 au BufEnter *.py set expandtab
 au BufEnter *.py set softtabstop=4
 au BufEnter *.py set autoindent
+au BufEnter *.py compiler nose
 autocmd FileType python set ft=python.django " For SnipMate
 autocmd FileType html set ft=htmldjango.html " For SnipMate
 autocmd FileType python set omnifunc=pythoncomplete#Complete
@@ -236,6 +242,7 @@ let clj_want_gorilla               = 1
 let vimclojure#NailgunClient       = "/usr/bin/ng"
 " pydiction
 let g:pydiction_location           = '~/.vim/complete-dict'
+let g:pyflakes_use_quickfix = 0
 " snipmate
 au BufRead *.php set ft=php.html   " dot-style syntax for multiple filetypes
 au BufEnter *.php set ft=php.html
@@ -248,7 +255,7 @@ let Tlist_Auto_Update = 1
 
 let g:buftabs_only_basename=1
 
-set cursorline
+" set cursorline
 
 let g:unite_yarm_server_url="http://redmine/"
 let g:unite_yarm_access_key='dbd167f9059116da96f0cc73a1219a1e33d2455d'
