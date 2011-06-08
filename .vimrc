@@ -53,10 +53,10 @@ endif " has("autocmd") }}}
 
 " set colorchemes and font
 if has("gui_running")
-	set background=light
+	set background=dark
 	colorscheme solarized
 else
-	set background=light
+	set background=dark
 	colorscheme solarized
 endif
 set gfn=roxanne\ 10 " <-- awesome font by steve "pokey" schmitt
@@ -197,16 +197,6 @@ au FileType css set omnifunc=csscomplete#CompleteCSS
 "au FileType python compiler pyunit
 "au FileType python setlocal makeprg=python\ ${HOME}/.bin/alltests.py
 
-" syntax-highlight SQL in PHP strings, and HTML in PHP strings
-"let php_sql_query=1
-"let php_htmlInStrings=1
-
-" auto-save views on open/close
-"au BufWrite *.php mkview
-"au BufRead *.php silent loadview
-
-" auto-lint php files every time we save
-"au BufWritePost *.php !php -l %
 
 " manage the way we deal with spaces in python files
 au BufEnter *.py set tabstop=4
@@ -216,6 +206,11 @@ au BufEnter *.py set expandtab
 au BufEnter *.py set softtabstop=4
 au BufEnter *.py set autoindent
 au BufEnter *.py compiler nose
+
+au BufWritePost test_*.py !nosetests -vs %
+"au BufWritePost test_*.py !trial %
+
+
 autocmd FileType python set ft=python.django " For SnipMate
 autocmd FileType html set ft=htmldjango.html " For SnipMate
 autocmd FileType python set omnifunc=pythoncomplete#Complete
@@ -234,12 +229,6 @@ let delimitMate_expand_space       = 1
 let g:gist_detect_filetype         = 1
 let g:gist_clip_command            = 'xclip -selection clipboard'
 let g:gist_open_browser_after_post = 1
-" vimclojure
-let clj_paren_rainbow              = 1
-let clj_highlight_builtin          = 1
-let clj_highlight_contrib          = 1
-let clj_want_gorilla               = 1
-let vimclojure#NailgunClient       = "/usr/bin/ng"
 " pydiction
 let g:pydiction_location           = '~/.vim/complete-dict'
 let g:pyflakes_use_quickfix = 0
@@ -247,19 +236,13 @@ let g:pyflakes_use_quickfix = 0
 au BufRead *.php set ft=php.html   " dot-style syntax for multiple filetypes
 au BufEnter *.php set ft=php.html
 
-" taglist
-let Tlist_Ctags_Cmd = '/usr/bin/ctags-exuberant'
-let Tlist_Process_File_Always = 1
-let Tlist_Show_Menu = 1
-let Tlist_Auto_Update = 1
+au BufRead *.md set ft=markdown
+au BufEnter *.md set ft=markdown
 
 let g:buftabs_only_basename=1
+let g:tagbar_ctags_bin = '/usr/bin/ctags-exuberant'
+let Tlist_Ctags_Cmd = '/usr/bin/ctags-exuberant'
 
 " set cursorline
 
-let g:unite_yarm_server_url="http://redmine/"
-let g:unite_yarm_access_key='dbd167f9059116da96f0cc73a1219a1e33d2455d'
-
 source ~/.vim/rtm_keys
-source ~/.vim/autoload/phpcs.vim
-source ~/.vim/autoload/php-doc.vim
