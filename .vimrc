@@ -4,22 +4,49 @@ filetype off                   " required!
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-" let Vundle manage Vundle
-" required! 
+""" let Vundle manage Vundle
+""" required! 
 Bundle 'gmarik/vundle'
 Bundle 'tpope/vim-fugitive'
+""" cosmetic
 Bundle 'chriskempson/vim-tomorrow-theme'
 Bundle 'minibufexpl.vim'
 Bundle 'Lokaltog/vim-powerline'
+""" util
+Bundle 'L9'
+Bundle 'WebAPI.vim'
+Bundle 'Shougo/neocomplcache'
+""" synxtax and movements
+Bundle 'scrooloose/syntastic'
 Bundle 'surround.vim'
 Bundle 'ragtag.vim'
-Bundle 'WebAPI.vim'
-Bundle 'mattn/gist-vim'
-Bundle 'claco/jasmine.vim'
 Bundle 'Raimondi/delimitMate'
-Bundle 'Shougo/neocomplcache'
+Bundle 'matchit.zip'
+Bundle 'Tabular'
+Bundle 'FuzzyFinder'
+""" services
+Bundle 'mattn/gist-vim'
+Bundle 'mrtazz/simplenote.vim'
+""" tests
+Bundle 'claco/jasmine.vim'
+""" language modes
+" org
+Bundle 'vim-orgmode'
+" python
+Bundle 'klen/python-mode'
+" ruby
+Bundle 'vim-ruby/vim-ruby'
+" scala
+Bundle 'vim-scala'
+" haskell
+Bundle 'bitc/vim-hdevtools' 
+" Arduio
+Bundle 'tclem/vim-arduino.git'
+Bundle 'Arduino-syntax-file'
 
 filetype on
+filetype indent on
+filetype plugin on
 
 let macvim_skip_cmd_opt_movement = 1
 
@@ -42,15 +69,38 @@ set t_Co=256                   " convince terminals to look pretty
 set hidden
 set autoindent
 
+
+
+
+
+""
+" Cosmetics - color scheme, get rid of the gui, controls, etc.
+""
+
 colorscheme Tomorrow-Night
 
 set guioptions=aegt
 nmap <C-F11> :if &guioptions=~'m'\|set guioptions-=m\|else\|set guioptions+=m \|endif<CR>
 
 
+
+
+
+
+""
+" Instead of leaving 'tilde turds' all over the system, drop everything
+" in a single backup dir
+""
+
 set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 
+
+
+
+""
+" 'Features' I added - alt-key navigation
+""
 
 " map Alt+1 through Alt+0 to tab 1, tab 2, tab 3, etc.
 " map <A-1> 1gt
@@ -89,15 +139,23 @@ map <C-left>  :cp<CR>
 map <C-up> :copen<CR>
 map <C-down>  :cclose<CR>
 
+
+
+
+""
+" Make typing life easier.
+""
+
 " who the fuck wants to type Ctrl-X Ctrl-O for omni?
 inoremap <C-space> <C-X><C-O>
 inoremap <C-space> <C-X><C-O>
-
 
 " when in insert mode, type a double-; or double-: will jump to the end before
 " inserting
 au FileType py inoremap :: <Esc>A:
 inoremap ;; <Esc>A;
+
+
 
 " behold, the mighty leader key.
 let mapleader = ","
@@ -119,7 +177,19 @@ augroup AutoReloadVimRC
 augroup END
 
 " fuck that buffer.
-nmap <silent> <Leader>k :bd<CR>
+nmap <silent> <leader>k :bd<CR>
+nmap <silent> <leader>w :w<CR>
+
+com! W w
+com! Qa qa
+
+nmap <leader>ff :FufFile<CR>
+nmap <leader>fb :FufBuffer<CR>
+
+let g:gist_clip_command = 'pbcopy'
+let g:gist_detect_filetype = 1
+let g:gist_open_browser_after_post = 1
+let g:gist_show_privates = 1
 
 autocmd FileType javascript set sw=2
 autocmd FileType javascript set ts=2
@@ -134,5 +204,40 @@ autocmd FileType html set sts=2
 autocmd FileType ruby set sw=2
 autocmd FileType ruby set ts=2
 autocmd FileType ruby set sts=2
-autocmd FileType ruby set textwidth=79
+"autocmd FileType ruby set textwidth=79
 autocmd FileType ruby set omnifunc=rubycomplete#Complete
+
+let g:pymode_doc = 1
+let g:pymode_lint = 1
+let g:pymode_rope = 1
+" Auto create and open ropeproject
+let g:pymode_rope_auto_project = 1
+" Enable autoimport
+let g:pymode_rope_enable_autoimport = 1
+" Auto generate global cache
+let g:pymode_rope_autoimport_generate = 1
+let g:pymode_rope_autoimport_underlineds = 0
+let g:pymode_rope_codeassist_maxfixes = 10
+let g:pymode_rope_sorted_completions = 1
+let g:pymode_rope_extended_complete = 1
+let g:pymode_rope_autoimport_modules = ["os","shutil","datetime"]
+let g:pymode_rope_confirm_saving = 1
+let g:pymode_rope_global_prefix = "<C-x>p"
+let g:pymode_rope_local_prefix = "<C-c>r"
+let g:pymode_rope_vim_completion = 1
+let g:pymode_rope_guess_project = 1
+let g:pymode_rope_goto_def_newwin = ""
+let g:pymode_rope_always_show_complete_menu = 0
+let g:pymode_folding = 1
+let g:pymode_motions = 1
+let g:pymode_utils_whitespaces = 1
+let g:pymode_indent = 1
+let g:pymode_virtualenv = 1
+let g:pymode_syntax_all = 1
+
+""
+"
+" Plugin includes
+"
+""
+source ~/.simplenoterc
