@@ -41,8 +41,10 @@ Bundle 'vim-scala'
 " haskell
 Bundle 'bitc/vim-hdevtools' 
 " Arduio
-Bundle 'tclem/vim-arduino.git'
+Bundle 'nichtich/vim-arduino.git'
 Bundle 'Arduino-syntax-file'
+" Android
+Bundle 'javacomplete'
 
 filetype on
 filetype indent on
@@ -183,6 +185,9 @@ nmap <silent> <leader>w :w<CR>
 com! W w
 com! Qa qa
 
+" Allow NeoComplCache at startup
+let g:neocomplcache_enable_at_startup = 1
+
 nmap <leader>ff :FufFile<CR>
 nmap <leader>fb :FufBuffer<CR>
 
@@ -228,12 +233,18 @@ let g:pymode_rope_vim_completion = 1
 let g:pymode_rope_guess_project = 1
 let g:pymode_rope_goto_def_newwin = ""
 let g:pymode_rope_always_show_complete_menu = 0
-let g:pymode_folding = 1
+let g:pymode_folding = 0
 let g:pymode_motions = 1
 let g:pymode_utils_whitespaces = 1
 let g:pymode_indent = 1
 let g:pymode_virtualenv = 1
 let g:pymode_syntax_all = 1
+
+autocmd Filetype java setlocal omnifunc=javacomplete#Complete 
+
+autocmd FileType xml set sw=2
+autocmd FileType xml set ts=2
+autocmd FileType xml set sts=2
 
 ""
 "
