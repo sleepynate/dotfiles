@@ -1,4 +1,3 @@
-set nocompatible               " be iMproved
 filetype off                   " required!
 
 set rtp+=~/.vim/bundle/vundle/
@@ -9,13 +8,16 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 Bundle 'tpope/vim-fugitive'
 """ cosmetic
+Bundle 'altercation/vim-colors-solarized'
 Bundle 'chriskempson/vim-tomorrow-theme'
-Bundle 'minibufexpl.vim'
-Bundle 'Lokaltog/vim-powerline'
+"Bundle 'Lokaltog/vim-powerline'
+Bundle 'itchyny/lightline.vim'
+Bundle 'bling/vim-bufferline'
 """ util
 Bundle 'L9'
 Bundle 'WebAPI.vim'
 Bundle 'Shougo/neocomplcache'
+" Bundle 'valloric/YouCompleteMe'
 """ synxtax and movements
 Bundle 'scrooloose/syntastic'
 Bundle 'surround.vim'
@@ -24,6 +26,9 @@ Bundle 'Raimondi/delimitMate'
 Bundle 'matchit.zip'
 Bundle 'Tabular'
 Bundle 'FuzzyFinder'
+""q" OSX bullshit
+Bundle 'rizzatti/funcoo.vim'
+Bundle 'rizzatti/dash.vim'
 """ services
 Bundle 'mattn/gist-vim'
 Bundle 'mrtazz/simplenote.vim'
@@ -36,6 +41,9 @@ Bundle 'vim-orgmode'
 Bundle 'klen/python-mode'
 " ruby
 Bundle 'vim-ruby/vim-ruby'
+Bundle 'slim-template/vim-slim'
+Bundle 'tpope/vim-bundler'
+Bundle 'tpope/vim-rails'
 " scala
 Bundle 'vim-scala'
 " haskell
@@ -44,7 +52,11 @@ Bundle 'bitc/vim-hdevtools'
 Bundle 'nichtich/vim-arduino.git'
 Bundle 'Arduino-syntax-file'
 " Android
+" Bundle 'groovy.vim'
+Bundle 'tfnico/vim-gradle'
 Bundle 'javacomplete'
+" Erlang
+Bundle 'jimenezrick/vimerl'
 
 filetype on
 filetype indent on
@@ -57,12 +69,13 @@ set backup                     " keep a backup file
 set history=50                 " keep 50 lines of command line history
 set ruler                      " show the cursor position all the time
 set showcmd                    " display incomplete commands
-set incsearch                  " do incremental searching
+set incsearch                  " do incremental searching -- search-as-you-type
 set number                     " show line numbers
+set relativenumber
 set numberwidth=4              " line numbers 4 chars wide
 set shiftwidth=4               " indent 4 spaces automatically
 set tabstop=4                  " tabs look 4 spaces wide
-set expandtab
+set expandtab                  " insert spaces instead of tabs
 set showmatch                  " show matching braces
 set showmode                   " show the mode i'm in
 syntax on                      " well duh, highlist that shit!
@@ -71,22 +84,45 @@ set t_Co=256                   " convince terminals to look pretty
 set hidden
 set autoindent
 
+" Shorten <Esc> delay
+set timeout timeoutlen=1000 ttimeoutlen=100
 
-
+set wildmode=longest:full
+set wildmenu
 
 
 ""
 " Cosmetics - color scheme, get rid of the gui, controls, etc.
 ""
 
-colorscheme Tomorrow-Night
+if has('gui_running')
+  colorscheme Tomorrow-Night
+  let g:lightline = {
+        \ 'colorscheme': 'Tomorrow_Night',
+        \ 'component': {
+        \   'readonly': '%{&readonly?"":""}',
+        \ },
+        \ 'separator': { 'left': '', 'right': '' },
+        \ 'subseparator': { 'left': '', 'right': '' }
+        \ }
+else
+  set background=dark
+  colorscheme Tomorrow-Night
+  let g:lightline = {
+        \ 'colorscheme': 'Tomorrow_Night',
+        \ 'component': {
+        \   'readonly': '%{&readonly?"":""}',
+        \ },
+        \ 'separator': { 'left': '', 'right': '' },
+        \ 'subseparator': { 'left': '', 'right': '' }
+        \ }
+endif
 
 set guioptions=aegt
+set guifont=Source\ Code\ Pro\ for\ Powerline:h14
 nmap <C-F11> :if &guioptions=~'m'\|set guioptions-=m\|else\|set guioptions+=m \|endif<CR>
 
-
-
-
+set laststatus=2
 
 
 ""
@@ -96,9 +132,6 @@ nmap <C-F11> :if &guioptions=~'m'\|set guioptions-=m\|else\|set guioptions+=m \|
 
 set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
-
-
-
 
 ""
 " 'Features' I added - alt-key navigation
@@ -126,23 +159,20 @@ map <left>  :wincmd h<CR>
 map <A-right> :bnext<CR>
 map <A-left>  :bprevious<CR>
 " compensate for terminal
-map <right> :bnext<CR>
-map <left>  :bprevious<CR>
+map <leader><right> :bnext<CR>
+map <leader><left>  :bprevious<CR>
 
 " alt-up and alt-down to cycle tabs in a split
 map <A-down> :tabnext<CR>
 map <A-up>   :tabprevious<CR>
-map <down> :tabnext<CR>
-map <up>   :tabprevious<CR>
+map <leader><down> :tabnext<CR>
+map <leader><up>   :tabprevious<CR>
 
 " jump through error list.
 map <C-right> :cn<CR>
 map <C-left>  :cp<CR>
 map <C-up> :copen<CR>
 map <C-down>  :cclose<CR>
-
-
-
 
 ""
 " Make typing life easier.
@@ -157,13 +187,16 @@ inoremap <C-space> <C-X><C-O>
 au FileType py inoremap :: <Esc>A:
 inoremap ;; <Esc>A;
 
-
-
 " behold, the mighty leader key.
 let mapleader = ","
 
 " vim likes to forget the proper directory. make a short version of autodir
 nmap <silent> <Leader>cd :cd %:p:h<CR>
+
+nnoremap <leader>m :silent !open -a Marked.app '%:p'<cr>
+
+" Toggle bizarre line numbers
+nnoremap <leader>n :NumbersToggle<cr>
 
 " map ,s to show whitespace markup (great for fixing python)
 set listchars=tab:▸\ ,trail:☠,eol:¬
@@ -196,17 +229,17 @@ let g:gist_detect_filetype = 1
 let g:gist_open_browser_after_post = 1
 let g:gist_show_privates = 1
 
-autocmd FileType javascript set sw=2
+autocmd FileType javascript set shiftwidth=2
 autocmd FileType javascript set ts=2
 autocmd FileType javascript set sts=2
 autocmd FileType javascript set textwidth=79
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 
-autocmd FileType html set sw=2
+autocmd FileType html set shiftwidth=2
 autocmd FileType html set ts=2
 autocmd FileType html set sts=2
 
-autocmd FileType ruby set sw=2
+autocmd FileType ruby set shiftwidth=2
 autocmd FileType ruby set ts=2
 autocmd FileType ruby set sts=2
 "autocmd FileType ruby set textwidth=79
@@ -242,13 +275,18 @@ let g:pymode_syntax_all = 1
 
 autocmd Filetype java setlocal omnifunc=javacomplete#Complete 
 
-autocmd FileType xml set sw=2
+autocmd FileType xml set shiftwidth=2
 autocmd FileType xml set ts=2
 autocmd FileType xml set sts=2
+
+autocmd FileType markdown set shiftwidth=4
+autocmd FileType markdown set ts=4
+autocmd FileType markdown set sts=4
+autocmd FileType markdown set textwidth=79
 
 ""
 "
 " Plugin includes
 "
 ""
-source ~/.simplenoterc
+" source ~/.simplenoterc
